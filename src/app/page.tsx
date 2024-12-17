@@ -104,18 +104,18 @@ export default function Home() {
                         </a>
                       ),
                       // Style lists
-                      ul: ({ node, children, ...props }) => (
+                      ul: ({ children, ...props }) => (
                         <ul className="list-disc list-inside my-2" {...props}>
                           {children}
                         </ul>
                       ),
                       // Style headings
-                      h1: ({ node, children, ...props }) => (
+                      h1: ({ children, ...props }) => (
                         <h1 className="text-xl font-bold my-2" {...props}>
                           {children}
                         </h1>
                       ),
-                      h2: ({ node, children, ...props }) => (
+                      h2: ({ children, ...props }) => (
                         <h2 className="text-lg font-semibold my-2" {...props}>
                           {children}
                         </h2>
