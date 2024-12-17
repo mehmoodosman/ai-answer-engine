@@ -9,15 +9,16 @@ interface ChatMessage {
   content: string;
 }
 
-export async function getGroqResponse(message: string) {
+export async function getGroqResponse(chatMessagess: ChatMessage[]) {
   const messages: ChatMessage[] = [
     {
       role: "system",
       content:
         "You are an academic expert, you always cite your sources, and base your responses only on the context text that you have been provided.",
     },
-    { role: "user", content: message },
+    ...chatMessagess,
   ];
+  console.log("messages: ", messages);
   console.log("messages: ", messages);
   const response = await groq.chat.completions.create({
     model: "llama-3.1-8b-instant",

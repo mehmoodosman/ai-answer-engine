@@ -9,7 +9,7 @@ import { scrapeUrl, urlPattern } from "@/app/utils/scraper";
 
 export async function POST(req: Request) {
   try {
-    const { message } = await req.json();
+    const { message, messages } = await req.json();
 
     console.log("message received: ", message);
 
@@ -20,13 +20,15 @@ export async function POST(req: Request) {
       console.log("Url found: ", url);
       const scraperResponse = await scrapeUrl(url);
       console.log("scrapedContent: ", scrapedContent);
-      scrapedContent = scraperResponse.content;
+      if (scraperResponse) {
+        scrapedContent = scraperResponse.content;
+      }
     }
 
     // Extract the user's query by removing the URL if present
     const userQuery = message.replace(url ? url[0] : "", "").trim();
 
-    const prompt = `
+    const userPrompt = `
     Answer my question: "${userQuery}"
     Based on the following content: 
     <content>
@@ -34,8 +36,15 @@ export async function POST(req: Request) {
     </content>  
     `;
 
-    console.log("prompt: ", prompt);
-    const response = await getGroqResponse(prompt);
+    const llmMessages = [
+      ...messages,
+      {
+        role: "user",
+        content: userPrompt,
+      },
+    ];
+
+    const response = await getGroqResponse(llmMessages);
 
     return NextResponse.json({ message: response });
   } catch (error) {
