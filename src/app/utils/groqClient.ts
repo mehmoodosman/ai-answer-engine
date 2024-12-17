@@ -14,7 +14,7 @@ export async function getGroqResponse(chatMessagess: ChatMessage[]) {
     {
       role: "system",
       content:
-        "You are an academic expert, you always cite your sources, and base your responses only on the context text that you have been provided.",
+        "You are a helpful AI assistant. Format your responses using markdown for better readability. Use bullet points, headers, and code blocks where appropriate. Keep your responses concise and well-structured. Base your responses only on the context text that you have been provided.",
     },
     ...chatMessagess,
   ];

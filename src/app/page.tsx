@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ReactMarkdown from 'react-markdown';
 
 type Message = {
   role: "user" | "assistant";
@@ -73,11 +74,54 @@ export default function Home() {
               <div
                 className={`px-4 py-2 rounded-2xl max-w-[80%] ${
                   msg.role === "assistant"
-                    ? "bg-gray-800 border border-gray-700 text-gray-100"
+                    ? "bg-gray-800 border border-gray-700 text-gray-100 prose prose-invert prose-sm max-w-none"
                     : "bg-cyan-600 text-white ml-auto"
                 }`}
               >
-                {msg.content}
+                {msg.role === "assistant" ? (
+                  <ReactMarkdown
+                    components={{
+                      // Style code blocks
+                      code: ({ node, inline, className, children, ...props }) => (
+                        <code
+                          className={`${className} ${
+                            inline ? 'bg-gray-700 px-1 py-0.5 rounded' : 'block bg-gray-700 p-2 rounded-lg'
+                          }`}
+                          {...props}
+                        >
+                          {children}
+                        </code>
+                      ),
+                      // Style links
+                      a: ({ node, children, ...props }) => (
+                        <a className="text-cyan-400 hover:text-cyan-300" {...props}>
+                          {children}
+                        </a>
+                      ),
+                      // Style lists
+                      ul: ({ node, children, ...props }) => (
+                        <ul className="list-disc list-inside my-2" {...props}>
+                          {children}
+                        </ul>
+                      ),
+                      // Style headings
+                      h1: ({ node, children, ...props }) => (
+                        <h1 className="text-xl font-bold my-2" {...props}>
+                          {children}
+                        </h1>
+                      ),
+                      h2: ({ node, children, ...props }) => (
+                        <h2 className="text-lg font-semibold my-2" {...props}>
+                          {children}
+                        </h2>
+                      ),
+                    }}
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
+                ) : (
+                  msg.content
+                )}
               </div>
             </div>
           ))}

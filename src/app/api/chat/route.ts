@@ -14,27 +14,25 @@ export async function POST(req: Request) {
     console.log("message received: ", message);
 
     const url = message.match(urlPattern);
+    let userPrompt = "";
 
-    let scrapedContent = "";
-    if (url) {
+    if (url && url[0]) {
       console.log("Url found: ", url[0]);
       const scraperResponse = await scrapeUrl(url[0]);
       if (scraperResponse) {
-        scrapedContent = scraperResponse.content;
-        console.log("scrapedContent: ", scrapedContent);
+        const userQuery = message.replace(url[0], "").trim();
+        userPrompt = `
+        Answer my question: "${userQuery}"
+        Based on the following content: 
+        <content>
+          ${scraperResponse.content}
+        </content>  
+        `;
       }
+    } else {
+      // If no URL is present, just use the message directly
+      userPrompt = message;
     }
-
-    // Extract the user's query by removing the URL if present
-    const userQuery = message.replace(url ? url[0] : "", "").trim();
-
-    const userPrompt = `
-    Answer my question: "${userQuery}"
-    Based on the following content: 
-    <content>
-      ${scrapedContent}
-    </content>  
-    `;
 
     const llmMessages = [
       ...messages,
