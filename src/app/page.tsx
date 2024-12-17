@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 
 type Message = {
   role: "user" | "assistant";
@@ -82,10 +82,12 @@ export default function Home() {
                   <ReactMarkdown
                     components={{
                       // Style code blocks
-                      code: ({ node, inline, className, children, ...props }) => (
+                      code: ({ inline, className, children, ...props }) => (
                         <code
                           className={`${className} ${
-                            inline ? 'bg-gray-700 px-1 py-0.5 rounded' : 'block bg-gray-700 p-2 rounded-lg'
+                            inline
+                              ? "bg-gray-700 px-1 py-0.5 rounded"
+                              : "block bg-gray-700 p-2 rounded-lg"
                           }`}
                           {...props}
                         >
@@ -93,8 +95,11 @@ export default function Home() {
                         </code>
                       ),
                       // Style links
-                      a: ({ node, children, ...props }) => (
-                        <a className="text-cyan-400 hover:text-cyan-300" {...props}>
+                      a: ({ children, ...props }) => (
+                        <a
+                          className="text-cyan-400 hover:text-cyan-300"
+                          {...props}
+                        >
                           {children}
                         </a>
                       ),
