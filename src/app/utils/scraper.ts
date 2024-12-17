@@ -25,14 +25,13 @@ function cleanText(text: string) {
 // Function to scrape content from a URL
 export async function scrapeUrl(url: string) {
   try {
-    // Check Cache for URL
     logger.info(`Starting scrape process for URL: ${url}`);
 
+    // Check Cache for URL
     const cached = await getCachedContent(url);
-
     if (cached) {
       logger.info(`Returning cached content for URL: ${url}`);
-      return cached;
+      return cached;  // Return immediately if cached content exists
     }
 
     logger.info(`Cache miss - Scraping content for URL: ${url}`);
@@ -106,6 +105,7 @@ export async function scrapeUrl(url: string) {
     };
 
     await cacheContent(url, finalResponse);
+    return finalResponse;
   } catch (error) {
     console.error(`Error scraping ${url}:`, error);
     return {
@@ -151,6 +151,9 @@ function isValidScrapedContent(data: any): data is ScrapedContent {
 
 // Function get cache key for a URL with sanitization
 function getCacheKey(url: string): string {
+  if (typeof url !== 'string') {
+    throw new Error(`Invalid URL type: expected string, got ${typeof url}`);
+  }
   const sanitizedUrl = url.substring(0, 100); // Limit to key length
   return `scrape:${sanitizedUrl}`;
 }

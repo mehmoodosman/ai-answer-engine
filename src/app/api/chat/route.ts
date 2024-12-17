@@ -17,11 +17,11 @@ export async function POST(req: Request) {
 
     let scrapedContent = "";
     if (url) {
-      console.log("Url found: ", url);
-      const scraperResponse = await scrapeUrl(url);
-      console.log("scrapedContent: ", scrapedContent);
+      console.log("Url found: ", url[0]);
+      const scraperResponse = await scrapeUrl(url[0]);
       if (scraperResponse) {
         scrapedContent = scraperResponse.content;
+        console.log("scrapedContent: ", scrapedContent);
       }
     }
 
