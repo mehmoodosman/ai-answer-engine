@@ -13,7 +13,6 @@ Welcome to the AI Answer Engine project! This application leverages advanced AI 
 - **TypeScript**: A superset of JavaScript that adds static types.
 - **Axios**: For making HTTP requests.
 - **Cheerio**: For parsing and manipulating HTML.
-- **Puppeteer**: For headless browser automation.
 - **Redis**: For caching and rate limiting.
 
 ## ToDos
