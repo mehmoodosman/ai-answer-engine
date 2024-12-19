@@ -15,3 +15,12 @@ Welcome to the AI Answer Engine project! This application leverages advanced AI 
 - **Cheerio**: For parsing and manipulating HTML.
 - **Puppeteer**: For headless browser automation.
 - **Redis**: For caching and rate limiting.
+
+## ToDos
+- **Puppeteer**: for Google search feature/headless browsing
+- **AI agents**: GROQ + GEMINI (https://ai.google.dev/gemini-api/docs/models/gemini)
+- **Nextjs Server Actions**: to secure api endpoints (https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations)
+- Build a comprehensive solution to extract content from any kind of URL or data source, such as YouTube videos, PDFs, CSV files, and images
+- Generate visualizations from the data such as bar charts, line charts, histograms, etc.
+- Implement a hierarchical web crawler that starts at a given URL and identifies all relevant links on the page (e.g., hyperlinks, embedded media links, and scrapes the content from those links as well) - **Firecrawl**: https://www.firecrawl.dev/ 
+
