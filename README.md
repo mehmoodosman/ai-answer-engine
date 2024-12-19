@@ -1,44 +1,17 @@
-# AI Answer Engine
+Welcome to the AI Answer Engine project! This application leverages advanced AI models to provide answers to user queries by scraping relevant content from the web. It is built using Next.js, TypeScript, and integrates with various libraries for web scraping and AI processing.
 
-## Getting Started
+## Features
 
-First, clone the repository and install the dependencies:
-```bash
-git clone https://github.com/team-headstart/ai-answer-engine.git
-```
+- **AI-Powered Responses**: Utilizes Groq SDK to generate responses based on user queries.
+- **Web Scraping**: Scrapes content from URLs provided by users using Cheerio and Puppeteer.
+- **Rate Limiting**: Implements rate limiting using Redis to manage API usage effectively.
+- **Caching**: Caches scraped content to improve performance and reduce redundant requests.
 
-Navigate to the project directory:
-```bash
-cd ai-answer-engine
-```
+## Technologies Used
 
-Then, install the dependencies:
-
-```bash
-npm install
-```
-
-Then, run the development server:
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Tasks
-
-- Take a look at the TODOs throughout the repo, namely:
-
-    - `src/app/page.tsx`: Update the UI and handle the API response as needed
- 
-    - `src/app/api/chat/route.ts`: Implement the chat API with Groq and web scraping with Cheerio and Puppeteer
- 
-    - `src/middleware.ts`: Implement the code here to add rate limiting with Redis
-
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js**: A React framework for building server-side rendered applications.
+- **TypeScript**: A superset of JavaScript that adds static types.
+- **Axios**: For making HTTP requests.
+- **Cheerio**: For parsing and manipulating HTML.
+- **Puppeteer**: For headless browser automation.
+- **Redis**: For caching and rate limiting.
